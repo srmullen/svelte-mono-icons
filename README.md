@@ -8,7 +8,7 @@ With npm
 `npm install --save-dev svelte-mono-icons`
 
 or yarn
-`yarn add --dev svelte-feather-icons`
+`yarn add --dev svelte-mono-icons`
 
 ## Usage
 
