@@ -1,10 +1,15 @@
 {
   "name": "svelte-mono-icons",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Mono icons for Svelte",
   "svelte": "src/index.js",
   "module": "index.mjs",
   "main": "index.js",
+  "files": [
+    "src",
+    "index.mjs",
+    "indes.js"
+  ],
   "scripts": {
     "build:icons": "node build.js",
     "build:dist": "rollup -c",
