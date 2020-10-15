@@ -7,7 +7,7 @@ const svgPath = './node_modules/mono-icons/svg/';
 
 const files = fs.readdirSync(svgPath);
 
-const template = data =>
+const template = icon =>
 `<script>
   export let size = '100%';
   let customClass = '';
@@ -18,30 +18,23 @@ const template = data =>
           ? size.slice(0, size.length -1) + 'em'
           : parseInt(size) + 'px';
   }
-<script>
+</script>
 
-<svg width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-${data}
+<svg width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mono mono-${icon.name} {customClass}">
+${icon.data}
 </svg>
 `;
 
-const filename = files[0];
-fs.readFile(`${svgPath}${filename}`, 'utf8').then(async file => {
-  const json = await svgson.parse(file);
-  const pathdata = svgson.stringify(json.children);
-  const component = template(pathdata);
-
+Promise.all(files.map(async filename => {
+  const file = await fs.readFile(`${svgPath}${filename}`, 'utf8');
   const info = path.parse(filename);
   const componentName = pascalCase(`${info.name}-icon`);
   const filepath = `./src/icons/${componentName}.svelte`;
-  return fs.ensureDir(path.dirname(filepath)).then(() => fs.writeFile(filepath, component, 'utf8'));
+  const json = await svgson.parse(file)
+  const pathdata = svgson.stringify(json.children);
+  const component = template({ name: info.name, data: pathdata });
+  await fs.ensureDir(path.dirname(filepath));
+  return fs.writeFile(filepath, component, 'utf8');
+})).then(() => {
+  console.log('done');
 });
-
-// files.forEach(name => {
-//   // const icon = name.split('.')
-  // const info = path.parse(name);
-//   if (info.ext === '.svg') {
-    // const componentName = pascalCase(`${info.name}-icon`);
-//     console.log(componentName);
-//   }
-// });
