@@ -14,7 +14,7 @@ or yarn
 
 ```html
 <script>
-  import { MoonIcon, SunIcon, ... } from 'svelte-mono-icons`;
+  import { MoonIcon, SunIcon, ... } from 'svelte-mono-icons';
 </script>
 
 <MoonIcon size="24" />
