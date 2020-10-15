@@ -1,11 +1,15 @@
 {
   "name": "svelte-mono-icons",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Mono icons for Svelte",
-  "main": "index.js",
   "svelte": "src/index.js",
+  "module": "index.mjs",
+  "main": "index.js",
   "scripts": {
-    "build": "node build.js"
+    "build:icons": "node build.js",
+    "build:dist": "rollup -c",
+    "build": "npm run build:icons && npm run build:dist",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "svelte",
@@ -15,9 +19,15 @@
   "author": "srmullen",
   "license": "MIT",
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^9.0.0",
     "fs-extra": "^9.0.1",
     "mono-icons": "^1.0.5",
     "pascal-case": "^3.1.1",
+    "rollup": "^2.30.0",
+    "rollup-plugin-svelte": "^6.0.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "svelte": "^3.29.0",
     "svgson": "^4.1.0"
-  }
+  },
+  "dependencies": {}
 }
