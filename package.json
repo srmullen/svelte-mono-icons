@@ -1,6 +1,6 @@
 {
   "name": "svelte-mono-icons",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Mono icons for Svelte",
   "svelte": "src/index.js",
   "module": "index.mjs",
