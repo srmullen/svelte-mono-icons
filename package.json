@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Mono icons for Svelte",
   "main": "index.js",
+  "svelte": "src/index.js",
   "scripts": {
     "build": "node build.js"
   },

@@ -34,7 +34,10 @@ Promise.all(files.map(async filename => {
   const pathdata = svgson.stringify(json.children);
   const component = template({ name: info.name, data: pathdata });
   await fs.ensureDir(path.dirname(filepath));
-  return fs.writeFile(filepath, component, 'utf8');
-})).then(() => {
-  console.log('done');
+  await fs.writeFile(filepath, component, 'utf8');
+  return { componentName };
+})).then((components) => {
+  const exportTemplate = (componentName) => `export { default as ${componentName} } from './icons/${componentName}.svelte'`;
+  const index = components.map(({ componentName }) => exportTemplate(componentName)).join('\n');
+  return fs.outputFile('./src/index.js', index, 'utf8');
 });
