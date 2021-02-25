@@ -20,7 +20,7 @@ const template = icon =>
   }
 </script>
 
-<svg width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mono mono-${icon.name} {customClass}">
+<svg width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="mono mono-${icon.name} {customClass}" {...$$restProps}>
 ${icon.data}
 </svg>
 `;

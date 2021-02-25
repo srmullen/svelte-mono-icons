@@ -18,7 +18,7 @@ or yarn
 </script>
 
 <MoonIcon size="24" />
-<SunIcon size="1.5x" class="yellow" />
+<SunIcon size="1.5x" class="yellow" focusable="false" />
 
 <style>
   :global(.yellow path) {
